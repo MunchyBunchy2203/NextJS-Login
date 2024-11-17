@@ -2,17 +2,19 @@
 
 import scss from "../../styles/projectPage.module.scss"
 import { loginUserAction } from "@/app/data/actions/auth-actions";
-import { useActionState } from "react";
-import { useRouter } from 'next/navigation'
+import { useActionState , useState} from "react";
+import { useRouter } from 'next/navigation';
+import { SubmitButton } from '@/app/components/elements/submit-button'
+import Image from 'next/image'
 
 export function LoginForm() {
     var INITIAL_STATE = { data: null, };
     var [formState, formAction] = useActionState(loginUserAction, INITIAL_STATE);
+    const [isLoading, setIsLoading] = useState(false);
     localStorage.clear();
 
+    console.log('Form State: ', formState)
     if (formState.data) {
-        console.log("## will render on client ##");
-        console.log(formState);
         if (formState.data.token) {
             var router = useRouter();
             localStorage.setItem('token', formState.data.token);
@@ -27,19 +29,20 @@ export function LoginForm() {
 
     return (
         <div className={scss.page}>
-            <form action={formAction}>
-                <div className={scss.container}>
+            <div className={scss.container}>
+                <Image className={scss.logo} src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
+                <form action={formAction}>
                     <div className={scss.inputBox}>
                         <input id="email" type="email" name="email" placeholder="user@example.com" required></input>
                     </div>
                     <div className={scss.inputBox}>
                         <input id="password" type="password" name="password" placeholder="Password" required></input>
                     </div>
-                    <div >
-                        <button type="submit" className={scss.successButton}>Login</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+                    <SubmitButton />
+                </form>
+            </div>
+        </div >
     )
 }
+
+//<div className={scss.loadingOverlay} hidden={!isLoading}>Loading...</div>

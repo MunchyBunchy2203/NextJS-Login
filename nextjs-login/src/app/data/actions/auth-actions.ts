@@ -6,15 +6,8 @@ export async function loginUserAction(prevState: any, formData: FormData) {
         password: formData.get("password")
     };
 
-    console.log('Fields: ', fields);
-
     var email = fields.username;
     var password = fields.password;
-
-    // fetch the blog posts from the mock API
-    /*const res = await fetch('http://localhost:3000/users');
-    console.log(res);
-    const users = await res.json();*/
 
     const response = await fetch('http://localhost:3000/loginUser', {
         method: 'POST',
@@ -24,8 +17,6 @@ export async function loginUserAction(prevState: any, formData: FormData) {
         body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
-
-    console.log(data);
 
     if (response.ok) {
         return {
