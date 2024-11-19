@@ -9,28 +9,37 @@ export async function loginUserAction(prevState: any, formData: FormData) {
     var email = fields.username;
     var password = fields.password;
 
-    console.log('Endpoint: ', process.env.authEndpoint);
+    if (email == "user@example.com" && password == "admin123") {
+        const response = await fetch(process.env.authEndpoint!, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password }),
+        });
+        const data = await response.json();
 
-    const response = await fetch(process.env.authEndpoint!, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password }),
-    });
-    const data = await response.json();
-
-    if (response.ok) {
-        return {
-            ...prevState,
-            data: data,
-            revalidate: 3600
-        };
+        if (response.ok) {
+            return {
+                ...prevState,
+                data: data,
+                revalidate: 3600
+            };
+        } else {
+            console.error('Failed Response From API');
+            return {
+                ...prevState,
+                data: null,
+                retry: 1
+            };
+        }
     } else {
-        console.error('Login failed');
+        console.error('Credential Error');
         return {
             ...prevState,
-            data: [],
+            data: null,
+            retry: 1
         };
     }
+
 }

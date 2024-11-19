@@ -99,6 +99,7 @@ This Next.js project implements a simple login page with basic form validation u
 
     When you click on the 'Login' button, you will see a 'login' event happen.
     ***NOTE*** - when you click on the button multiple times it will not call the function again. This is to combat multiple submissions.
+    ***Additional Note*** - if the wrong credentials is used you will be shown 'Login Failure'
 
 3. **Dashboard**
     After the login is successful, you will be redirected to the dashboard with some fake data from the mock api endpoint in Mockoon alongside the email you used to log into the system.

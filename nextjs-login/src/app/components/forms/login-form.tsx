@@ -9,7 +9,7 @@ import Image from 'next/image';
 import useSWR, { Fetcher } from 'swr'
 
 export function LoginForm() {
-    var INITIAL_STATE = { data: null, };
+    var INITIAL_STATE = { data: null, retry: 0};
     var [formState, formAction] = useActionState(loginUserAction, INITIAL_STATE);
     localStorage.clear();
 
@@ -41,9 +41,8 @@ export function LoginForm() {
                         <SubmitButton label="Login"/>
                     </div>
                 </form>
+                <p className={scss.warnInfo}>{formState.data == null && formState.retry != 0 ? 'Login Failure' : ''}</p>
             </div>
         </div >
     )
 }
-
-//<div className={scss.loadingOverlay} hidden={!isLoading}>Loading...</div>
