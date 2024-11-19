@@ -9,7 +9,9 @@ export async function loginUserAction(prevState: any, formData: FormData) {
     var email = fields.username;
     var password = fields.password;
 
-    const response = await fetch('http://localhost:3000/loginUser', {
+    console.log('Endpoint: ', process.env.authEndpoint);
+
+    const response = await fetch(process.env.authEndpoint!, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

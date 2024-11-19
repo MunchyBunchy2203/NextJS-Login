@@ -4,6 +4,8 @@ import scss from "../../styles/projectPage.module.scss"
 import { useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import Image from 'next/image'
+import { SucessButton } from '@/app/components/elements/sucess-button'
+
 
 export function ClientDashboard() {
 
@@ -15,6 +17,11 @@ export function ClientDashboard() {
     console.log('History State: ', userData)
 
     if (!token) {
+        router.push('/pages/auth/login');
+        return null;
+    }
+
+    if(token && !userData.id){
         router.push('/pages/auth/login');
         return null;
     }
@@ -53,7 +60,7 @@ export function ClientDashboard() {
 
                 </div>
                 <div >
-                    <button onClick={logoutClick} className={scss.successButton}>Logout</button>
+                    <SucessButton onClick={logoutClick} label="Logout"/>
                 </div>
             </div>
         </div>

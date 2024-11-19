@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  env: {
+    authEndpoint: "http://localhost:3000/loginUser"
+  }
 };
 
 export default nextConfig;

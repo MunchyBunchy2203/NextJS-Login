@@ -1,0 +1,94 @@
+{
+  "uuid": "e4ceab75-010e-4190-9994-48dc8ed58dba",
+  "lastMigration": 33,
+  "name": "NextjsLogin",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "0c5b67c0-b704-49e2-97a4-08e241d1d7d6",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "loginUser",
+      "responses": [
+        {
+          "uuid": "7f206439-c1c3-4556-b86b-20eb0d508985",
+          "body": "{\n  \"token\": \"your_mock_token\",\n  \"user\": {\n    \"id\": \"{{faker 'string.uuid'}}\",\n    \"firstname\": \"{{faker 'person.firstName'}}\",\n    \"lastname\": \"{{faker 'person.firstName'}}\",\n    \"email\": \"{{body 'email'}}\",\n    \"createdAt\": \"{{now}}\",\n    \"age\": \"{{faker 'number.int' min=18 max=90}}\",\n    \"residenceCountry\": \"{{faker 'location.country'}}\",\n    \"residenceCity\": \"{{faker 'location.city'}}\"\n  }\n}",
+          "latency": 2000,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "0c5b67c0-b704-49e2-97a4-08e241d1d7d6"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

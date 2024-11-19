@@ -2,9 +2,9 @@
   "name": "nextjs-login",
   "version": "0.1.0",
   "private": true,
-  "main": "/src/app/pages/login.tsx",
+  "main": "/src/app/page.tsx",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5050",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

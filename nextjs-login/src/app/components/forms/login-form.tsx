@@ -5,12 +5,12 @@ import { loginUserAction } from "@/app/data/actions/auth-actions";
 import { useActionState , useState} from "react";
 import { useRouter } from 'next/navigation';
 import { SubmitButton } from '@/app/components/elements/submit-button'
-import Image from 'next/image'
+import Image from 'next/image';
+import useSWR, { Fetcher } from 'swr'
 
 export function LoginForm() {
     var INITIAL_STATE = { data: null, };
     var [formState, formAction] = useActionState(loginUserAction, INITIAL_STATE);
-    const [isLoading, setIsLoading] = useState(false);
     localStorage.clear();
 
     console.log('Form State: ', formState)
@@ -26,7 +26,6 @@ export function LoginForm() {
         }
     }
 
-
     return (
         <div className={scss.page}>
             <div className={scss.container}>
@@ -38,7 +37,9 @@ export function LoginForm() {
                     <div className={scss.inputBox}>
                         <input id="password" type="password" name="password" placeholder="Password" required></input>
                     </div>
-                    <SubmitButton />
+                    <div >
+                        <SubmitButton label="Login"/>
+                    </div>
                 </form>
             </div>
         </div >
